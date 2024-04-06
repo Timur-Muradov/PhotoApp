@@ -13,6 +13,7 @@ struct ContentView: View {
     @State private var isShowPhotoLibrary = false
     @State private var image = UIImage()
     @State private var filteredImage = UIImage()
+    @State private var selectedFilter: FilterType?
     
     let imageFilterService = ImageFilterService()
     
@@ -43,18 +44,26 @@ struct ContentView: View {
                 .cornerRadius(20)
                 .padding(.horizontal)
             }
+            Spacer()
+            Picker("Select Filter", selection: $selectedFilter) {
+                Text("Sepia").tag(FilterType.sepia)
+                Text("Vintage").tag(FilterType.vintage)
+                Text("Black & White").tag(FilterType.blackAndWhite)
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(.horizontal)
+            .padding(.bottom, 20)
         }
         .sheet(isPresented: $isShowPhotoLibrary) {
             ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("ImageChanged"))) { _ in
-            DispatchQueue.main.async {
-                self.filteredImage = self.imageFilterService.applySepiaTone(to: self.image)
+            if let selectedFilter = selectedFilter {
+                self.filteredImage = self.imageFilterService.applyFilter(to: self.image, filterType: selectedFilter)
             }
         }
     }
 }
-
 
 #Preview {
     ContentView()
