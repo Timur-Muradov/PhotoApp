@@ -11,6 +11,8 @@
 		7E7FB44A2BC16B2D000A594A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FB4492BC16B2D000A594A /* ContentView.swift */; };
 		7E7FB44C2BC16B30000A594A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E7FB44B2BC16B30000A594A /* Assets.xcassets */; };
 		7E7FB44F2BC16B30000A594A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E7FB44E2BC16B30000A594A /* Preview Assets.xcassets */; };
+		7E7FB4562BC17A84000A594A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FB4552BC17A84000A594A /* ImagePicker.swift */; };
+		7E7FB4582BC1AE35000A594A /* ImageFilterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FB4572BC1AE35000A594A /* ImageFilterService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		7E7FB4492BC16B2D000A594A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7E7FB44B2BC16B30000A594A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7E7FB44E2BC16B30000A594A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7E7FB4552BC17A84000A594A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		7E7FB4572BC1AE35000A594A /* ImageFilterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFilterService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,8 @@
 			children = (
 				7E7FB4472BC16B2D000A594A /* PhotoAppApp.swift */,
 				7E7FB4492BC16B2D000A594A /* ContentView.swift */,
+				7E7FB4552BC17A84000A594A /* ImagePicker.swift */,
+				7E7FB4572BC1AE35000A594A /* ImageFilterService.swift */,
 				7E7FB44B2BC16B30000A594A /* Assets.xcassets */,
 				7E7FB44D2BC16B30000A594A /* Preview Content */,
 			);
@@ -137,6 +143,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E7FB4562BC17A84000A594A /* ImagePicker.swift in Sources */,
+				7E7FB4582BC1AE35000A594A /* ImageFilterService.swift in Sources */,
 				7E7FB44A2BC16B2D000A594A /* ContentView.swift in Sources */,
 				7E7FB4482BC16B2D000A594A /* PhotoAppApp.swift in Sources */,
 			);
