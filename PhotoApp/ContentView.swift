@@ -26,7 +26,6 @@ struct ContentView: View {
                             homeData.updateImageRotation(rotation: value.degrees)
                         })
         }
-        PaintingAndText()
     }
 }
 

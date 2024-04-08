@@ -9,45 +9,84 @@ import SwiftUI
 
 struct Home: View {
     @StateObject var homeData = HomeViewModel()
+    @StateObject var model = DrawingViewModel()
+    
     var body: some View {
-        
-        VStack {
-            if !homeData.allImages.isEmpty && homeData.mainView != nil {
-                Image(uiImage: homeData.mainView.image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: UIScreen.main.bounds.width)
-                    .scaleEffect(homeData.imageScale)
-                    .rotationEffect(Angle(degrees: homeData.imageRotation))
-                
-                Slider(value: $homeData.value)
-                    .padding()
-                    .opacity(homeData.mainView.isEditable ? 1 : 0)
-                    .disabled(homeData.mainView.isEditable ? false : true)
-                
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 20) {
-                        ForEach(homeData.allImages) { filtered in
-                            Image(uiImage: filtered.image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 150, height: 150)
-                                .onTapGesture {
-                                    homeData.value = 1.0
-                                    homeData.mainView = filtered
-                                }
+        ZStack {
+            VStack {
+                if !homeData.allImages.isEmpty && homeData.mainView != nil {
+                    Image(uiImage: homeData.mainView.image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: UIScreen.main.bounds.width)
+                        .scaleEffect(homeData.imageScale)
+                        .rotationEffect(Angle(degrees: homeData.imageRotation))
+                    
+                    Slider(value: $homeData.value)
+                        .padding()
+                        .opacity(homeData.mainView.isEditable ? 1 : 0)
+                        .disabled(homeData.mainView.isEditable ? false : true)
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 20) {
+                            ForEach(homeData.allImages) { filtered in
+                                Image(uiImage: filtered.image)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 150, height: 150)
+                                    .onTapGesture {
+                                        homeData.value = 1.0
+                                        homeData.mainView = filtered
+                                    }
+                            }
                         }
+                        .padding()
                     }
-                    .padding()
+                }
+                
+                else if homeData.imageData.count == 0 {
+                    Text("Выберете картинку")
                 }
             }
-            else if homeData.imageData.count == 0 {
-                Text("Выберете картинку")
-            }
-            else {
+            
+            if model.addNewBox {
+                Color.black.opacity(0.75)
+                    .ignoresSafeArea()
                 
+                TextField("Type here", text: $model.textBoxes[model.currentIndex].text)
+                    .font(.system(size: 25))
+                    .colorScheme(.dark)
+                    .foregroundColor(model.textBoxes[model.currentIndex].textColor)
+                    .padding()
+                
+                HStack {
+                    Button(action: {
+                        withAnimation {
+                            model.toolPicker.setVisible(true, forFirstResponder: model.canvas)
+                            model.canvas.becomeFirstResponder()
+                            model.addNewBox = false
+                        }
+                    },
+                           label: { 
+                        Text("Add")
+                    })
+                    .padding()
+                    
+                    Spacer()
+                    
+                    Button(action: { model.cancelTextView() },
+                           label: {
+                        Text("Cancel")
+                    })
+                }
+                .overlay(
+                    ColorPicker("", selection: $model.textBoxes[model.currentIndex].textColor)
+                        .labelsHidden()
+                )
+                .frame(maxHeight: .infinity, alignment: .top)
             }
         }
+        
         .onChange(of: homeData.value) { (_) in
             homeData.updateEffect()
         }
@@ -84,12 +123,12 @@ struct Home: View {
                 .disabled(homeData.mainView == nil ? true : false)
             }
         }
-            .sheet(isPresented: $homeData.imagePicker) {
-                ImagePicker(picker: $homeData.imagePicker, imageData: $homeData.imageData)
-            }
+        .sheet(isPresented: $homeData.imagePicker) {
+            ImagePicker(picker: $homeData.imagePicker, imageData: $homeData.imageData)
         }
     }
-    
-    #Preview {
-        Home()
-    }
+}
+
+#Preview {
+    Home()
+}
