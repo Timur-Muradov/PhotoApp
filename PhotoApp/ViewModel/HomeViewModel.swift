@@ -5,13 +5,13 @@
 //  Created by Тимур Мурадов on 07.04.2024.
 //
 
-import SwiftUI
 import CoreImage
 import CoreImage.CIFilterBuiltins
+import SwiftUI
 
 class HomeViewModel: ObservableObject {
-    
-    @Published var imagePicker = false
+    // MARK: - Properties
+    @Published var imagePicker: Bool = false
     @Published var imageData = Data(count: 0)
     @Published var allImages: [FilteredImage] = []
     @Published var mainView: FilteredImage!
@@ -20,10 +20,16 @@ class HomeViewModel: ObservableObject {
     @Published var imageRotation: Double = 0.0
     
     let filters: [CIFilter] = [
-        CIFilter.sepiaTone(), CIFilter.photoEffectFade(), CIFilter.colorMonochrome(), CIFilter.photoEffectChrome(), CIFilter.bloom(), CIFilter.gaussianBlur(), CIFilter.colorCurves()
+        CIFilter.sepiaTone(),
+        CIFilter.photoEffectFade(),
+        CIFilter.colorMonochrome(),
+        CIFilter.photoEffectChrome(),
+        CIFilter.bloom(),
+        CIFilter.gaussianBlur(),
+        CIFilter.colorCurves()
     ]
     
-    
+    // MARK: - Public methods
     func loadFilter() {
         let context = CIContext()
         filters.forEach { (filter) in

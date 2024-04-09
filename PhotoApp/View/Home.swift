@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct Home: View {
+    // MARK: - Properties
     @StateObject var homeData = HomeViewModel()
     @StateObject var model = DrawingViewModel()
     
+    // MARK: - Body
     var body: some View {
         ZStack {
             VStack {
@@ -67,7 +69,7 @@ struct Home: View {
                             model.addNewBox = false
                         }
                     },
-                           label: { 
+                           label: {
                         Text("Add")
                     })
                     .padding()

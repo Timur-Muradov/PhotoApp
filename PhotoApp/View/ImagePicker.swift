@@ -9,6 +9,7 @@ import PhotosUI
 import SwiftUI
 
 struct ImagePicker: UIViewControllerRepresentable {
+    //MARK: - Properties
     @Binding var picker: Bool
     @Binding var imageData: Data
     

@@ -26,7 +26,7 @@ struct DrawingScreen: View {
                                    rect: size)
                         
                         ForEach(model.textBoxes) {box in
-                            Text(model.texBoxes[model.currentIndex].id == box.id && model.addNewBox ? "" : box.text)
+                            Text(model.currentTextBox.id == box.id && model.addNewBox ? "" : box.text)
                                 .font(.system(size: 30))
                                 .fontWeight(box.isBold ? .bold : .none)
                                 .foregroundColor(box.textColor)
@@ -73,43 +73,43 @@ struct DrawingScreen: View {
         return index
     }
 }
+
+
+struct CanvasView: UIViewRepresentable {
     
+    @Binding var canvas: PKCanvasView
+    @Binding var imageData: Data
+    @Binding var toolPicker: PKToolPicker
+    var rect: CGSize
     
-    struct CanvasView: UIViewRepresentable {
+    func makeUIView(context: Context) -> PKCanvasView {
+        canvas.drawingPolicy = .anyInput
+        canvas.isOpaque = false
+        canvas.backgroundColor = .clear
         
-        @Binding var canvas: PKCanvasView
-        @Binding var imageData: Data
-        @Binding var toolPicker: PKToolPicker
-        var rect: CGSize
-        
-        func makeUIView(context: Context) -> PKCanvasView {
-            canvas.drawingPolicy = .anyInput
-            canvas.isOpaque = false
-            canvas.backgroundColor = .clear
+        if let image = UIImage(data: imageData) {
             
-            if let image = UIImage(data: imageData) {
-                
-                let imageView = UIImageView(image: image)
-                imageView.frame = CGRect(x: 0, y: 0, width: rect.width, height: rect.height)
-                imageView.contentMode = .scaleAspectFit
-                imageView.clipsToBounds = true
-                
-                let subView = canvas.subviews[0]
-                subView.addSubview(imageView)
-                subView.sendSubviewToBack(imageView)
-                
-                toolPicker.setVisible(true, forFirstResponder: canvas)
-                toolPicker.addObserver(canvas)
-                canvas.becomeFirstResponder()
-                
-            }
-            return canvas
+            let imageView = UIImageView(image: image)
+            imageView.frame = CGRect(x: 0, y: 0, width: rect.width, height: rect.height)
+            imageView.contentMode = .scaleAspectFit
+            imageView.clipsToBounds = true
+            
+            let subView = canvas.subviews[0]
+            subView.addSubview(imageView)
+            subView.sendSubviewToBack(imageView)
+            
+            toolPicker.setVisible(true, forFirstResponder: canvas)
+            toolPicker.addObserver(canvas)
+            canvas.becomeFirstResponder()
+            
         }
-        
-        func updateUIView(_ uiView: PKCanvasView, context: Context) {}
-        
+        return canvas
     }
     
-    #Preview {
-        Home()
-    }
+    func updateUIView(_ uiView: PKCanvasView, context: Context) {}
+    
+}
+
+#Preview {
+    Home()
+}

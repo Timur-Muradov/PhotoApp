@@ -5,8 +5,8 @@
 //  Created by Тимур Мурадов on 07.04.2024.
 //
 
-import SwiftUI
 import CoreImage
+import SwiftUI
 
 struct FilteredImage: Identifiable {
     var id = UUID().uuidString
