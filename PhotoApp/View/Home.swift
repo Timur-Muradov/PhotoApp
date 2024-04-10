@@ -23,12 +23,7 @@ struct Home: View {
                         .frame(width: UIScreen.main.bounds.width)
                         .scaleEffect(homeData.imageScale)
                         .rotationEffect(Angle(degrees: homeData.imageRotation))
-                    
-                    Slider(value: $homeData.value)
-                        .padding()
-                        .opacity(homeData.mainView.isEditable ? 1 : 0)
-                        .disabled(homeData.mainView.isEditable ? false : true)
-                    
+                                        
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 20) {
                             ForEach(homeData.allImages) { filtered in

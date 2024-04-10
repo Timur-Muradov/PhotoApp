@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E0FB6B12BC67A9000BD50AD /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0FB6B02BC67A9000BD50AD /* Coordinator.swift */; };
 		7E66FB272BC426CE005E1765 /* DrawingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E66FB262BC426CE005E1765 /* DrawingViewModel.swift */; };
 		7E66FB292BC437DE005E1765 /* DrawingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E66FB282BC437DE005E1765 /* DrawingScreen.swift */; };
 		7E66FB2B2BC44A42005E1765 /* TextBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E66FB2A2BC44A42005E1765 /* TextBox.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E0FB6B02BC67A9000BD50AD /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		7E66FB262BC426CE005E1765 /* DrawingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewModel.swift; sourceTree = "<group>"; };
 		7E66FB282BC437DE005E1765 /* DrawingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingScreen.swift; sourceTree = "<group>"; };
 		7E66FB2A2BC44A42005E1765 /* TextBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextBox.swift; sourceTree = "<group>"; };
@@ -106,8 +108,9 @@
 			isa = PBXGroup;
 			children = (
 				7E7FB45C2BC2C81C000A594A /* Home.swift */,
-				7E7FB4552BC17A84000A594A /* ImagePicker.swift */,
 				7E66FB282BC437DE005E1765 /* DrawingScreen.swift */,
+				7E7FB4552BC17A84000A594A /* ImagePicker.swift */,
+				7E0FB6B02BC67A9000BD50AD /* Coordinator.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 			files = (
 				7E7FB4612BC2D77C000A594A /* FilteredImage.swift in Sources */,
 				7E66FB2B2BC44A42005E1765 /* TextBox.swift in Sources */,
+				7E0FB6B12BC67A9000BD50AD /* Coordinator.swift in Sources */,
 				7E66FB272BC426CE005E1765 /* DrawingViewModel.swift in Sources */,
 				7E7FB4562BC17A84000A594A /* ImagePicker.swift in Sources */,
 				7E7FB45F2BC2C85F000A594A /* HomeViewModel.swift in Sources */,

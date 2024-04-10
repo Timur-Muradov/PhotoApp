@@ -59,7 +59,7 @@ struct DrawingScreen: View {
                     model.toolPicker.setVisible(false, forFirstResponder: model.canvas)
                     model.canvas.resignFirstResponder()
                 }, label: {
-                    Image(systemName: "plus")
+                    Image(systemName: Properties.imageName)
                 })
             }
         })
@@ -71,6 +71,12 @@ struct DrawingScreen: View {
         } ?? 0
         
         return index
+    }
+}
+
+extension DrawingScreen {
+    enum Properties {
+       static let imageName = "plus"
     }
 }
 

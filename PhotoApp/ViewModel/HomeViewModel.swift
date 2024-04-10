@@ -32,6 +32,7 @@ class HomeViewModel: ObservableObject {
     // MARK: - Public methods
     func loadFilter() {
         let context = CIContext()
+        allImages = []
         filters.forEach { (filter) in
             DispatchQueue.global(qos: .userInteractive).async {
                 let ciImage = CIImage(data: self.imageData)
